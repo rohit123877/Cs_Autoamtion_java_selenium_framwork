@@ -25,6 +25,7 @@ public class ExtentListnerClass implements ITestListener{
 
 	public void ConfigureReport()
 	{
+		ReadConfig readconfig = new ReadConfig();
 		String timestamp = new SimpleDateFormat("yyyy.mm.dd.hh.mm.ss").format(new Date());
 		String reportName = "Cs_Automation" + timestamp + ".html";
 		htmlReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "//Reports//" + reportName);
@@ -34,7 +35,7 @@ public class ExtentListnerClass implements ITestListener{
 		//add system information 
 		reports.setSystemInfo("machine" ,"test");
 		reports.setSystemInfo("OS", "Wnodows");
-		reports.setSystemInfo("browser", "Chrome");
+		reports.setSystemInfo("browser", readconfig.getBrowser());
 		reports.setSystemInfo("test", "Rohit");
 		// Configure to change the look of extent reports 
 		htmlReporter.config().setDocumentTitle("Extent Listener Report Demo");
