@@ -1,0 +1,6 @@
+[INFO ] 2026-02-22 22:51:52.869 [main] Cs_Automation - URL opened successfully
+[INFO ] 2026-02-22 22:51:52.985 [main] Cs_Automation - verify login execution started
+[INFO ] 2026-02-22 22:51:54.731 [main] Cs_Automation - Click on sign in link
+[INFO ] 2026-02-22 22:51:55.573 [main] Cs_Automation - username enterd successfully
+[INFO ] 2026-02-22 22:51:55.935 [main] Cs_Automation - Password enter sucessfully
+[INFO ] 2026-02-22 22:52:10.403 [main] Cs_Automation - Verify login failed
