@@ -32,4 +32,31 @@ public class ReadExcelFile {
 			return "";
 		}
 	}
-}
+	public static int getRowCount(String fileName, String sheetName)
+	{
+		try {
+			inputStream = new FileInputStream(fileName);
+			workBook = new XSSFWorkbook(inputStream);
+			excelSheet = workBook.getSheet(sheetName);
+			int ttrows = excelSheet.getLastRowNum()+1;
+			workBook.close();
+			return ttrows;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return 0;
+		}
+	}
+		public static int getColCount( String fileName, String sheetName) {
+			try {
+				FileInputStream inputStream = new FileInputStream(fileName);
+				workBook = new XSSFWorkbook(inputStream);
+				excelSheet = workBook.getSheet(sheetName);
+				int ttcell = excelSheet.getRow(0).getLastCellNum();
+				workBook.close();
+				return ttcell;
+			} catch (Exception e) {
+				// TODO: handle exception
+				return 0;
+			}
+		}
+	}
