@@ -1,8 +1,13 @@
 package com.cs_automation.pageobject;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 public class MyAccount {
 
 	WebDriver ldriver;
@@ -36,6 +41,8 @@ public class MyAccount {
 	WebElement signupButton;
 	@FindBy(css = "button[data-qa='login-button']")
 	WebElement clickloginbutton;
+	@FindBy(xpath = "//a[contains(text(),'Logout')]")
+	WebElement signOutLink;
 	// Actions / Methods
 	public void enterName(String name) {
 		NewuserName.clear();
@@ -64,6 +71,16 @@ public class MyAccount {
 	public void clickloginbutton()
 	{
 		clickloginbutton.click();
+	}
+	public void ClickOnSignOut() {
+		// 1. Initialize the wait
+		WebDriverWait wait = new WebDriverWait(ldriver, Duration.ofSeconds(10));
+
+		// 2. Locate the element with the robust XPath we created
+		WebElement logoutLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Logout')]")));
+
+		// 3. Click the element
+		logoutLink.click();
 	}
 	// Combined action (Interview-friendly)
 	public void signup(String name, String email1) {

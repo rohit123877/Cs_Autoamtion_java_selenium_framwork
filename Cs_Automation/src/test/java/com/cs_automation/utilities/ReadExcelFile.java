@@ -9,7 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ReadExcelFile {
-	
+
 
 	//Classes use for red the excel file 
 	public static FileInputStream inputStream;
@@ -26,7 +26,7 @@ public class ReadExcelFile {
 			cell = workBook.getSheet(sheetName).getRow(rowNO).getCell(CellNo);
 			workBook.close();
 			return cell.getStringCellValue();
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			return "";
@@ -46,17 +46,17 @@ public class ReadExcelFile {
 			return 0;
 		}
 	}
-		public static int getColCount( String fileName, String sheetName) {
-			try {
-				FileInputStream inputStream = new FileInputStream(fileName);
-				workBook = new XSSFWorkbook(inputStream);
-				excelSheet = workBook.getSheet(sheetName);
-				int ttcell = excelSheet.getRow(0).getLastCellNum();
-				workBook.close();
-				return ttcell;
-			} catch (Exception e) {
-				// TODO: handle exception
-				return 0;
-			}
+	public static int getColCount( String fileName, String sheetName) {
+		try {
+			FileInputStream inputStream = new FileInputStream(fileName);
+			workBook = new XSSFWorkbook(inputStream);
+			excelSheet = workBook.getSheet(sheetName);
+			int ttcell = excelSheet.getRow(0).getLastCellNum();
+			workBook.close();
+			return ttcell;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return 0;
 		}
 	}
+}

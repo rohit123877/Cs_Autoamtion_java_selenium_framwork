@@ -2,6 +2,7 @@ package com.cs_automation.testcases;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,17 +30,17 @@ public class registeredUserAccount {
 	WebElement userName;
 	public String getUserName()
 	{
-	    WebDriverWait wait = new WebDriverWait(ldriver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(ldriver, Duration.ofSeconds(10));
 
-	    wait.until(ExpectedConditions.visibilityOf(userName));
+		wait.until(ExpectedConditions.visibilityOf(userName));
 
-	    return userName.getText();
+		return userName.getText();
 	}
 
-/*	@FindBy(linkText = "Logout")
-	WebElement signOut;
+	@FindBy(xpath = "//a[contains(text(),'Logout')]")
+	WebElement signOutLink;
 
-	@FindBy(name ="search_query")
+	/*		@FindBy(name ="search_query")
 	WebElement searchBox;
 
 	@FindBy(name ="submit_search")
@@ -49,14 +50,19 @@ public class registeredUserAccount {
 	WebElement WomenMenu;
 
 	@FindBy(linkText="T-shirts")
-	WebElement TShirtMenu;
+	WebElement TShirtMenu;*/
 
 
+	public void ClickOnSignOut() {
+		// 1. Initialize the wait
+		WebDriverWait wait = new WebDriverWait(ldriver, Duration.ofSeconds(10));
 
-	public void clickOnSignOut()
-	{
-		signOut.click();
-	}*/
+		// 2. Locate the element with the robust XPath we created
+		WebElement logoutLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Logout')]")));
+
+		// 3. Click the element
+		logoutLink.click();
+	}
 
 
 	/*public String getUserName()
@@ -67,7 +73,7 @@ public class registeredUserAccount {
 	}*/
 
 
-/*
+	/*
 	public void EnterDataInSearchBox(String searchKey)
 	{
 		searchBox.sendKeys(searchKey);

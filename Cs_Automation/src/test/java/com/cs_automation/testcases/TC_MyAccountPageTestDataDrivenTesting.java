@@ -1,10 +1,13 @@
 package com.cs_automation.testcases;
 import java.io.IOException;
+import java.util.logging.Logger;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.cs_automation.pageobject.IndexPage;
 import com.cs_automation.pageobject.MyAccount;
+import com.cs_automation.utilities.ReadExcelFile;
 
 import junit.framework.Assert;
 
@@ -49,34 +52,74 @@ public class TC_MyAccountPageTestDataDrivenTesting extends Baseclass {
 
 		Assert.assertEquals("TESTER1", userName);
 	}
-	@Test
+	@Test(dataProvider = "LoginDataProvider")
 
-	public void verifylogin()throws IOException
+	public void verifylogin(String userEmail, String UserPass, String expectedUsername)throws IOException
 	{
-		logger.info("verify login execution started");
+		driver.get(url);
+		logger.info("verify login execution started for:" + userEmail);
 		IndexPage indexPage = new IndexPage(driver);
 		indexPage.clickSignupLogin();
 		logger.info("Click on sign in link");
+		
 		MyAccount myap = new MyAccount(driver);
-		myap.entersignupEmail("Tester9@yopmail.com");
-		logger.info("username enterd successfully");
-		myap.Enterpassword("test123");
+		myap.entersignupEmail(userEmail);
+		logger.info("username enterd successfully" +userEmail);
+		
+		myap.Enterpassword(UserPass);
 		logger.info("Password enter sucessfully");
+		
 		myap.clickloginbutton();
+		logger.info("Login button click ");
+		
 		registeredUserAccount regUser = new registeredUserAccount(driver);
 		String userName = regUser.getUserName();
-
-		if(userName.equals("TESTER")) 
-		{
-			logger.info("Verify login passed");
+		String actualName = regUser.getUserName();
+		if(actualName.trim().equals(expectedUsername.trim())){
+			logger.info("login success fot  " + userEmail);
+		
+		//	logger.info("Verify login passed");
 			Assert.assertTrue(true);
+			regUser.ClickOnSignOut();
 		}
 		else
 		{
-			logger.info("Verify login failed");
+			logger.info("Verify login failed for" +userEmail);
 
-			captureScreenShot(driver, "verifylogin");
-			Assert.assertFalse(false);
+			captureScreenShot(driver, "verifylogin" +userEmail);
+			driver.manage().deleteAllCookies();
+			driver.navigate().refresh();
+			Assert.fail("Login failed: Expected " + expectedUsername + "but found" +userName);
 		}
+		logger.info("***************TestCase Verify login ends*****************"); 
 	}
+	@DataProvider(name = "LoginDataProvider")
+	public String[][] LoginDataProvider()
+	{
+		//System.out.println(System.getProperty("user.dir"));
+		String fileName = System.getProperty("user.dir") + "\\data driven\\DataDRiven.xlsx";
+
+
+		int ttlRows = ReadExcelFile.getRowCount(fileName, "LoginTestData");
+		int ttlColumns = ReadExcelFile.getColCount(fileName, "LoginTestData");
+		// 1. ADD THIS VALIDATION CHECK
+	    if (ttlRows <= 1) {
+	        System.out.println("ERROR: Excel sheet 'LoginTestData' is empty or only has headers. Row count: " + ttlRows);
+	        return new String[0][0]; // Return an empty array so TestNG skips gracefully instead of crashing
+	    }
+
+		String data[][]=new String[ttlRows-1][ttlColumns];
+
+		for(int i=1;i<ttlRows;i++)//rows =1,2
+		{
+			for(int j=0;j<ttlColumns;j++)//col=0, 1,2
+			{
+
+				data[i-1][j]=ReadExcelFile.getCellValue(fileName,"LoginTestData", i,j);
+			}
+
+		}
+		return data;
+	}
+
 }
