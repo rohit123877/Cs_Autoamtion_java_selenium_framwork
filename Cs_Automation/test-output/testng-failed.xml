@@ -8,7 +8,7 @@
     <classes>
       <class name="com.cs_automation.testcases.TC_MyAccountPageTestDataDrivenTesting">
         <methods>
-          <include name="verifylogin"/>
+          <include name="verifylogin" invocation-numbers="1 2"/>
           <include name="setup"/>
           <include name="tearDown"/>
         </methods>

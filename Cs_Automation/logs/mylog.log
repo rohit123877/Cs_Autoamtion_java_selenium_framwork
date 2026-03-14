@@ -104,3 +104,12 @@
 [INFO ] 2026-03-04 12:45:39.688 [main] Cs_Automation - Login button click 
 [INFO ] 2026-03-04 12:45:39.884 [main] Cs_Automation - login success fot  Tester12@yopmail.com
 [INFO ] 2026-03-04 12:45:41.465 [main] Cs_Automation - ***************TestCase Verify login ends*****************
+[INFO ] 2026-03-04 22:23:33.617 [main] Cs_Automation - URL opened successfully
+[INFO ] 2026-03-04 22:24:01.944 [main] Cs_Automation - verify login execution started for:Tester10@yopmail.com
+[INFO ] 2026-03-04 22:24:06.382 [main] Cs_Automation - Click on sign in link
+[INFO ] 2026-03-04 22:24:06.933 [main] Cs_Automation - username enterd successfullyTester10@yopmail.com
+[INFO ] 2026-03-04 22:24:07.259 [main] Cs_Automation - Password enter sucessfully
+[INFO ] 2026-03-04 22:24:33.722 [main] Cs_Automation - Login button click 
+[INFO ] 2026-03-04 22:24:34.072 [main] Cs_Automation - login success fot  Tester10@yopmail.com
+[INFO ] 2026-03-04 22:24:37.107 [main] Cs_Automation - ***************TestCase Verify login ends*****************
+[INFO ] 2026-03-04 22:24:42.145 [main] Cs_Automation - verify login execution started for:Tester11@yopmail.com
